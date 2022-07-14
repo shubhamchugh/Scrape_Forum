@@ -19,7 +19,14 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('post_title');
             $table->string('slug', 191)->unique();
+            $table->string('status', 50)->default('publish');
+            $table->string('post_ref', 50)->default('forum');
+            $table->string('post_description', 50);
             $table->string('source_value')->unique();
+            $table->string('google_index', 50)->default('pending');
+            $table->string('bing_index', 50)->default('pending');
+            $table->string('wordpress_transfer', 50)->default('pending');
+            $table->string('flarum_transfer', 50)->default('pending');
             $table->softDeletes();
             $table->timestamps();
 
