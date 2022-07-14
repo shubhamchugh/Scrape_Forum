@@ -11,6 +11,7 @@
         "laravel/nova": "~4.0",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "manogi/nova-tiptap": "^3.1",
         "outl1ne/nova-menu-builder": "^7.0",
         "spatie/nova-tags-field": "^4.0"
     },

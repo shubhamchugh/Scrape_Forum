@@ -2,12 +2,52 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Manogi\Tiptap\Tiptap;
 use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class PostContent extends Resource
 {
+
+    public function buttonOptions()
+    {
+        return [
+            'heading',
+            '|',
+            'italic',
+            'bold',
+            '|',
+            'link',
+            'code',
+            'strike',
+            'underline',
+            'highlight',
+            '|',
+            'bulletList',
+            'orderedList',
+            'br',
+            'codeBlock',
+            'blockquote',
+            '|',
+            'horizontalRule',
+            'hardBreak',
+            '|',
+            'table',
+            '|',
+            'image',
+            '|',
+            'textAlign',
+            '|',
+            'rtl',
+            '|',
+            'history',
+            '|',
+            'editHtml',
+        ];
+    }
+
     /**
      * The model the resource corresponds to.
      *
@@ -41,6 +81,12 @@ class PostContent extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('Post', 'post')->searchable(),
+            BelongsTo::make('User', 'user')->searchable(),
+
+            Tiptap::make('content_dec')
+                ->buttons($this->buttonOptions())
+                ->headingLevels([2, 3, 4]),
         ];
     }
 

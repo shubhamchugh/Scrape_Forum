@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -63,6 +64,94 @@ class Post extends Resource
     }
 
     /**
+     * google_index
+     *
+     * @return array for google index
+     */
+    public function google_index()
+    {
+
+        $google_index_status       = \App\Models\Post::pluck('google_index')->unique();
+        $google_index_status_array = [
+            'pending' => 'PENDING',
+        ];
+
+        if (!$google_index_status->isEmpty()) {
+            foreach ($google_index_status as $key) {
+                $google_index_status_array[$key] = Str::upper($key);
+            }
+            return array_unique($google_index_status_array);
+        }
+        return array_unique($google_index_status_array);
+    }
+
+    /**
+     * bing_index
+     *
+     * @return array for bing_index
+     */
+    public function bing_index()
+    {
+
+        $bing_index_status       = \App\Models\Post::pluck('bing_index')->unique();
+        $bing_index_status_array = [
+            'pending' => 'PENDING',
+        ];
+
+        if (!$bing_index_status->isEmpty()) {
+            foreach ($bing_index_status as $key) {
+                $bing_index_status_array[$key] = Str::upper($key);
+            }
+            return array_unique($bing_index_status_array);
+        }
+        return array_unique($bing_index_status_array);
+    }
+
+    /**
+     * wordpress_transfer
+     *
+     * @return array for bing_index
+     */
+    public function wordpress_transfer()
+    {
+
+        $wordpress_transfer_status       = \App\Models\Post::pluck('wordpress_transfer')->unique();
+        $wordpress_transfer_status_array = [
+            'pending' => 'PENDING',
+        ];
+
+        if (!$wordpress_transfer_status->isEmpty()) {
+            foreach ($wordpress_transfer_status as $key) {
+                $wordpress_transfer_status_array[$key] = Str::upper($key);
+            }
+            return array_unique($wordpress_transfer_status_array);
+        }
+        return array_unique($wordpress_transfer_status_array);
+    }
+
+    /**
+     * flarum_transfer
+     *
+     * @return array for bing_index
+     */
+    public function flarum_transfer()
+    {
+
+        $flarum_transfer_status       = \App\Models\Post::pluck('flarum_transfer')->unique();
+        $flarum_transfer_status_array = [
+            'pending' => 'PENDING',
+        ];
+
+        if (!$flarum_transfer_status->isEmpty()) {
+            foreach ($flarum_transfer_status as $key) {
+                $flarum_transfer_status_array[$key] = Str::upper($key);
+            }
+            return array_unique($flarum_transfer_status_array);
+        }
+        return array_unique($flarum_transfer_status_array);
+    }
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string
@@ -74,7 +163,7 @@ class Post extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'post_title';
 
     /**
      * The columns that should be searched.
@@ -82,7 +171,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'post_title',
     ];
 
     /**
@@ -107,8 +196,25 @@ class Post extends Resource
             Select::make('Post Type', 'post_type')
                 ->options($this->type_options())
                 ->hideFromIndex(),
+
             Select::make('Post Status', 'status')
                 ->options($this->post_status())
+                ->hideFromIndex(),
+
+            Select::make('Google Index Status', 'google_index')
+                ->options($this->google_index())
+                ->hideFromIndex(),
+
+            Select::make('Bing  Index Status', 'bing_index')
+                ->options($this->bing_index())
+                ->hideFromIndex(),
+
+            Select::make('Flarum Transfer Status', 'flarum_transfer')
+                ->options($this->flarum_transfer())
+                ->hideFromIndex(),
+
+            Select::make('wordpress Transfer Status', 'wordpress_transfer')
+                ->options($this->wordpress_transfer())
                 ->hideFromIndex(),
 
             BelongsTo::make('User', 'user', User::class)->searchable(),
@@ -116,6 +222,8 @@ class Post extends Resource
             Text::make('source_value')
                 ->hideFromIndex()
                 ->rules('required', 'unique:posts,source_value', 'max:255')->hideWhenUpdating(),
+
+            HasMany::make('Post Content', 'PostContent'),
         ];
     }
 

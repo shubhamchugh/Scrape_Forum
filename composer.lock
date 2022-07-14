@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6dba83cc2a2897dc6ffa82974dec0d7",
+    "content-hash": "bfb6942c523a7c90ff6246ab44c9d5c9",
     "packages": [
         {
             "name": "box/spout",
@@ -2314,6 +2314,59 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "manogi/nova-tiptap",
+            "version": "v3.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/manogi/nova-tiptap.git",
+                "reference": "1e4b066115829069ef08dcb5da126b13586a5181"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/manogi/nova-tiptap/zipball/1e4b066115829069ef08dcb5da126b13586a5181",
+                "reference": "1e4b066115829069ef08dcb5da126b13586a5181",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^8.0|^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.3.0",
+                "phpunit/phpunit": "^9.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Manogi\\Tiptap\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Manogi\\Tiptap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tiptap editor field.",
+            "keywords": [
+                "editor",
+                "laravel",
+                "nova",
+                "tiptap",
+                "vue"
+            ],
+            "support": {
+                "issues": "https://github.com/manogi/nova-tiptap/issues",
+                "source": "https://github.com/manogi/nova-tiptap/tree/v3.1.3"
+            },
+            "time": "2022-07-14T07:13:27+00:00"
         },
         {
             "name": "monolog/monolog",
