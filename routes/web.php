@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\Backend\Cache\CacheClearController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
+use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
+use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,27 @@ Route::get('clear', CacheClearController::class)->name('clear');
  * GET LATEST VERSION OF THE WEBSITE SOFTWARE FROM GITHUB *
  **********************************************************/
 Route::get('upgrade', UpgradeSoftwareController::class)->name('upgrade');
+
+/****************************************
+ * TRANSFER DATA FROM OLD TO NOVA PANEL *
+ ****************************************/
+
+Route::get('transfer', StackToNovaController::class);
+
+/***************************
+ * TRANSFER DATA TO FLARUM *
+ ***************************/
+
+/*************************************************
+ * SCRAPE POST URL FROM STACKOVERFLOW PAGINATION *
+ *************************************************/
+/**********************************
+ * SCRAPE STACKOVERFLOW POST DATA *
+ **********************************/
+
+/***********************************
+ * GOOGLE & BING INDEXING REQUESTS *
+ ***********************************/
 
 /**************************
  * SEARCH ENGINE INDEXING *

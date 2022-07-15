@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,5 +18,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             MenuItemSeeder::class,
         ]);
+        User::factory()
+            ->count(500000)
+            ->create();
     }
 }

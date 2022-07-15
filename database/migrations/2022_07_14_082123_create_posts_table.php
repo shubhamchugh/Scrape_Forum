@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('post_type', 50)->default('post');
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('post_title');
             $table->string('slug', 191)->unique();
             $table->string('status', 50)->default('publish');
             $table->string('post_ref', 50)->default('forum');
-            $table->string('post_description', 50);
+            $table->text('post_description')->nullable();
             $table->string('source_value')->unique();
             $table->string('google_index', 50)->default('pending');
             $table->string('bing_index', 50)->default('pending');
