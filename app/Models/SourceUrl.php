@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SourceUrl extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $guarded = ['id'];
 
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
 }

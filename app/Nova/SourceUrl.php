@@ -2,16 +2,15 @@
 
 namespace App\Nova;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\ID;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class SourceUrl extends Resource
 {
-
     /**
      * is_scraped
      *
@@ -19,18 +18,19 @@ class SourceUrl extends Resource
      */
     public function is_scraped()
     {
-
-        $is_scraped_status       = \App\Models\SourceUrl::pluck('is_scraped')->unique();
+        $is_scraped_status = \App\Models\SourceUrl::pluck('is_scraped')->unique();
         $is_scraped_status_array = [
             'pending' => 'PENDING',
         ];
 
-        if (!$is_scraped_status->isEmpty()) {
+        if (! $is_scraped_status->isEmpty()) {
             foreach ($is_scraped_status as $key) {
                 $is_scraped_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($is_scraped_status_array);
         }
+
         return array_unique($is_scraped_status_array);
     }
 

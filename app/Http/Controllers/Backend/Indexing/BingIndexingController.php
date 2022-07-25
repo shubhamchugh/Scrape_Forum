@@ -8,6 +8,6 @@ class BingIndexingController extends Controller
 {
     public function bing_indexing()
     {
-        dd("pass");
+        dd('pass');
     }
 }

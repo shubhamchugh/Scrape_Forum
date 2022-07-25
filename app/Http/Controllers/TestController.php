@@ -16,7 +16,7 @@ class TestController extends Controller
         ], [
             'publish' => 'PUBLISH',
             'article' => 'ARTICLE',
-            'new'     => 'NEW',
+            'new' => 'NEW',
         ]);
 
         $data = array_unique($raw);

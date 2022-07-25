@@ -2,17 +2,20 @@
 
 namespace App\Models\Flarum;
 
-use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class FlarumDiscussion extends Model
 {
     use HasFactory;
+
     protected $connection = 'Flarum_mysql';
-    protected $table      = 'Flarum_discussions';
-    public $timestamps    = false;
-    protected $fillable   = [
+
+    protected $table = 'Flarum_discussions';
+
+    public $timestamps = false;
+
+    protected $fillable = [
         'title',
         'slug',
         'is_approved',
@@ -25,7 +28,7 @@ class FlarumDiscussion extends Model
     {
         return [
             'slug' => [
-                'source'            => 'title',
+                'source' => 'title',
                 'slugEngineOptions' => [
                     'lowercase' => false,
                 ],

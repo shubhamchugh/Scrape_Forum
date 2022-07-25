@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\NovaMenuMenu;
-use Illuminate\Database\Seeder;
 use App\Models\NovaMenuMenuItem;
+use Illuminate\Database\Seeder;
 
 class MenuItemSeeder extends Seeder
 {
@@ -15,10 +15,9 @@ class MenuItemSeeder extends Seeder
      */
     public function run()
     {
-
         $records = NovaMenuMenu::first();
 
-        if (!$records) {
+        if (! $records) {
             NovaMenuMenu::firstOrCreate([
                 'name' => 'Home',
                 'slug' => 'header',
@@ -27,20 +26,19 @@ class MenuItemSeeder extends Seeder
 
         $records_menu = NovaMenuMenuItem::first();
 
-        if (!$records_menu) {
+        if (! $records_menu) {
             NovaMenuMenuItem::firstOrCreate([
-                'menu_id'   => (!empty($records->id)) ? $records->id : 1,
-                'name'      => 'Home',
-                'locale'    => 'en_US',
-                'class'     => 'Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType',
-                'value'     => null,
-                'target'    => '_self',
-                'data'      => null,
+                'menu_id' => (! empty($records->id)) ? $records->id : 1,
+                'name' => 'Home',
+                'locale' => 'en_US',
+                'class' => 'Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType',
+                'value' => null,
+                'target' => '_self',
+                'data' => null,
                 'parent_id' => null,
-                'order'     => 1,
-                'enabled'   => 1,
+                'order' => 1,
+                'enabled' => 1,
             ]);
         }
-
     }
 }

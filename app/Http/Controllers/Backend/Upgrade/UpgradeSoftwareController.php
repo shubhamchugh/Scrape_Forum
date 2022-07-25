@@ -8,8 +8,8 @@ class UpgradeSoftwareController extends Controller
 {
     public function __invoke()
     {
-        echo "<pre>";
-        echo "<h2>Git Update Output</h2>";
+        echo '<pre>';
+        echo '<h2>Git Update Output</h2>';
 
         echo shell_exec("git config --global --add safe.directory '*'");
 
@@ -27,10 +27,10 @@ class UpgradeSoftwareController extends Controller
 
         echo shell_exec('cd .. && COMPOSER_MEMORY_LIMIT=-1 composer update');
 
-        echo "<h2>Migration Details</h2>";
+        echo '<h2>Migration Details</h2>';
         echo shell_exec('cd .. && php artisan migrate');
 
-        echo "<h2>Cache Clear Update Output</h2>";
+        echo '<h2>Cache Clear Update Output</h2>';
 
         Artisan::call('cache:clear');
         print_r(Artisan::output());
@@ -50,7 +50,7 @@ class UpgradeSoftwareController extends Controller
         Artisan::call('optimize:clear');
         print_r(Artisan::output());
 
-        echo "<h2>Admin and MenuBar Data Reset</h2>";
+        echo '<h2>Admin and MenuBar Data Reset</h2>';
         Artisan::call('db:seed --force');
         print_r(Artisan::output());
 
@@ -62,6 +62,5 @@ class UpgradeSoftwareController extends Controller
         echo shell_exec('cd .. && sudo chmod -R 777 bootstrap/cache');
         echo shell_exec('cd .. && sudo chmod -R 777 public');
         echo shell_exec('cd .. && sudo chmod -R o+rw public');
-
     }
 }

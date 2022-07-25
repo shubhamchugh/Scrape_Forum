@@ -9,7 +9,7 @@ class CacheClearController extends Controller
 {
     public function __invoke()
     {
-        echo "<pre>";
+        echo '<pre>';
         echo shell_exec('cd .. && sudo chmod -R o+rw bootstrap/cache');
         echo shell_exec('cd .. && sudo chmod -R o+rw storage');
         echo shell_exec('cd .. && sudo chmod -R 777 storage');

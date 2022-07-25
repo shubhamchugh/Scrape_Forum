@@ -20,8 +20,15 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('themes.default.content.home');
 });
+Route::get('/post', function () {
+    return view('themes.default.content.post');
+});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/test', TestController::class);
 

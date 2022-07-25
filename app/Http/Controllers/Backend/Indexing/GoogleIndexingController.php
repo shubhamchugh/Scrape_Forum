@@ -8,6 +8,6 @@ class GoogleIndexingController extends Controller
 {
     public function google_indexing()
     {
-        dd("pass");
+        dd('pass');
     }
 }

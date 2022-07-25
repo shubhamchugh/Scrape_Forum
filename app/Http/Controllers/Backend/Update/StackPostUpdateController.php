@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Backend\Update;
 
-use Carbon\Carbon;
-use App\Models\Post;
-use App\Models\FakeUser;
-use App\Models\PostContent;
 use App\Http\Controllers\Controller;
+use App\Models\FakeUser;
+use App\Models\Post;
+use App\Models\PostContent;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class StackPostUpdateController extends Controller
 {
     public static function update($id)
     {
-        $post          = Post::where('id', $id)->first();
+        $post = Post::where('id', $id)->first();
         $url_to_scrape = $post->source_value;
 
         $response = Http::get($url_to_scrape);
@@ -32,7 +32,7 @@ class StackPostUpdateController extends Controller
 
         //News Xpath to get Data
         $questions = $document_xpath->query('//h1/a[@class="question-hyperlink"]');
-        $answers   = $document_xpath->query('//div[@class="s-prose js-post-body"]');
+        $answers = $document_xpath->query('//div[@class="s-prose js-post-body"]');
 
         foreach ($questions as $question) {
             $stack_q[] = $question->nodeValue;
@@ -45,37 +45,35 @@ class StackPostUpdateController extends Controller
         }
         //print_r($stack_a);
 
-        $stack_q = (!empty($stack_q)) ? $stack_q[0] : null;
+        $stack_q = (! empty($stack_q)) ? $stack_q[0] : null;
 
         if (empty($stack_q)) {
-            echo "404 Found or Site Block the ip";
+            echo '404 Found or Site Block the ip';
             dd();
         }
 
-        $startdate = strtotime("2021-3-01 00:00:00");
+        $startdate = strtotime('2021-3-01 00:00:00');
 
-        $randomDate = date("Y-m-d H:i:s", mt_rand($startdate, strtotime(Carbon::now())));
+        $randomDate = date('Y-m-d H:i:s', mt_rand($startdate, strtotime(Carbon::now())));
 
         Post::where('id', $id)->update([
             'post_title' => $stack_q,
         ]);
 
-        $stack_a       = (!empty($stack_a)) ? $stack_a : null;
+        $stack_a = (! empty($stack_a)) ? $stack_a : null;
         $totalFakeUser = FakeUser::count();
-        if (!empty($stack_a)) {
+        if (! empty($stack_a)) {
             PostContent::where('post_id', $id)->delete();
             for ($i = 0; $i < count($stack_a); $i++) {
                 PostContent::create([
-                    'post_id'      => $id,
+                    'post_id' => $id,
                     'fake_user_id' => mt_rand(1, $totalFakeUser),
-                    'content_dec'  => $stack_a[$i],
+                    'content_dec' => $stack_a[$i],
                 ]);
             }
-
         } else {
-            echo "Answers Not Found";
+            echo 'Answers Not Found';
             dd();
         }
-
     }
 }

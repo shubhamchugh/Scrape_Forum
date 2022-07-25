@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\BelongsTo;
@@ -17,7 +16,6 @@ use Spatie\TagsField\Tags;
 
 class Post extends Resource
 {
-
     /**
      * type_options
      *
@@ -25,19 +23,20 @@ class Post extends Resource
      */
     public function type_options()
     {
-
-        $post_type       = \App\Models\Post::pluck('post_type')->unique();
+        $post_type = \App\Models\Post::pluck('post_type')->unique();
         $post_type_array = [
-            'post'    => 'POST',
+            'post' => 'POST',
             'article' => 'ARTICLE',
         ];
 
-        if (!$post_type->isEmpty()) {
+        if (! $post_type->isEmpty()) {
             foreach ($post_type as $key) {
                 $post_type_array[$key] = Str::upper($key);
             }
+
             return array_unique($post_type_array);
         }
+
         return array_unique($post_type_array);
     }
 
@@ -48,19 +47,20 @@ class Post extends Resource
      */
     public function post_status()
     {
-
-        $post_status       = \App\Models\Post::pluck('status')->unique();
+        $post_status = \App\Models\Post::pluck('status')->unique();
         $post_status_array = [
             'publish' => 'PUBLISH',
-            'draft'   => 'DRAFT',
+            'draft' => 'DRAFT',
         ];
 
-        if (!$post_status->isEmpty()) {
+        if (! $post_status->isEmpty()) {
             foreach ($post_status as $key) {
                 $post_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($post_status_array);
         }
+
         return array_unique($post_status_array);
     }
 
@@ -71,18 +71,19 @@ class Post extends Resource
      */
     public function google_index()
     {
-
-        $google_index_status       = \App\Models\Post::pluck('google_index')->unique();
+        $google_index_status = \App\Models\Post::pluck('google_index')->unique();
         $google_index_status_array = [
             'pending' => 'PENDING',
         ];
 
-        if (!$google_index_status->isEmpty()) {
+        if (! $google_index_status->isEmpty()) {
             foreach ($google_index_status as $key) {
                 $google_index_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($google_index_status_array);
         }
+
         return array_unique($google_index_status_array);
     }
 
@@ -93,18 +94,19 @@ class Post extends Resource
      */
     public function bing_index()
     {
-
-        $bing_index_status       = \App\Models\Post::pluck('bing_index')->unique();
+        $bing_index_status = \App\Models\Post::pluck('bing_index')->unique();
         $bing_index_status_array = [
             'pending' => 'PENDING',
         ];
 
-        if (!$bing_index_status->isEmpty()) {
+        if (! $bing_index_status->isEmpty()) {
             foreach ($bing_index_status as $key) {
                 $bing_index_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($bing_index_status_array);
         }
+
         return array_unique($bing_index_status_array);
     }
 
@@ -115,18 +117,19 @@ class Post extends Resource
      */
     public function wordpress_transfer()
     {
-
-        $wordpress_transfer_status       = \App\Models\Post::pluck('wordpress_transfer')->unique();
+        $wordpress_transfer_status = \App\Models\Post::pluck('wordpress_transfer')->unique();
         $wordpress_transfer_status_array = [
             'pending' => 'PENDING',
         ];
 
-        if (!$wordpress_transfer_status->isEmpty()) {
+        if (! $wordpress_transfer_status->isEmpty()) {
             foreach ($wordpress_transfer_status as $key) {
                 $wordpress_transfer_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($wordpress_transfer_status_array);
         }
+
         return array_unique($wordpress_transfer_status_array);
     }
 
@@ -137,18 +140,19 @@ class Post extends Resource
      */
     public function flarum_transfer()
     {
-
-        $flarum_transfer_status       = \App\Models\Post::pluck('flarum_transfer')->unique();
+        $flarum_transfer_status = \App\Models\Post::pluck('flarum_transfer')->unique();
         $flarum_transfer_status_array = [
             'pending' => 'PENDING',
         ];
 
-        if (!$flarum_transfer_status->isEmpty()) {
+        if (! $flarum_transfer_status->isEmpty()) {
             foreach ($flarum_transfer_status as $key) {
                 $flarum_transfer_status_array[$key] = Str::upper($key);
             }
+
             return array_unique($flarum_transfer_status_array);
         }
+
         return array_unique($flarum_transfer_status_array);
     }
 
@@ -187,6 +191,7 @@ class Post extends Resource
             ID::make()->sortable(),
             Text::make('Post Url', function () {
                 $post_url = url($this->slug);
+
                 return "<a target='_blank' href=$post_url>View Post</a>";
             })->asHtml(),
             Slug::make('slug')->from('post_title')->hideFromIndex(),

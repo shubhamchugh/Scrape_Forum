@@ -20,10 +20,10 @@ class AdminSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         User::truncate();
         DB::table('users')->insert([
-            'name'              => 'Shubham Chugh',
-            'email'             => 'chugh.shubham12@gmail.com',
+            'name' => 'Shubham Chugh',
+            'email' => 'chugh.shubham12@gmail.com',
             'email_verified_at' => now(),
-            'password'          => Hash::make('Unknown@24'),
+            'password' => Hash::make('Unknown@24'),
         ]);
     }
 }
