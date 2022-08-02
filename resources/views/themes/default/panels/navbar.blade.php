@@ -3,7 +3,7 @@
         class="flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div class="flex flex-row items-center justify-between lg:justify-start">
             <a href="./index.html"
-                class="text-lg font-bold tracking-tighter text-green-700 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
+                class="text-2xl font-bold tracking-tighter text-green-700 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
                 wickedblocks </a>
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -18,9 +18,9 @@
         </div>
         <nav :class="{'flex': open, 'hidden': !open}"
             class="flex-col items-center flex-grow hidden pb-4 border-green-700 md:pb-0 md:flex md:justify-end md:flex-row lg:border-l-2 lg:pl-2">
-            <a class="px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
+            <a class="font-bold px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
                 href="#">About</a>
-            <a class="px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
+            <a class="font-bold px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
                 href="#">Contact</a>
             <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
                 <form action="" method="post" id="revue-form" name="revue-form" target="_blank"
@@ -41,8 +41,12 @@
     </div>
 </div>
 <div>
-    <div class="hidden lg:block p-5 overflow-y-auto whitespace-nowrap scroll-hidden bg-gray-200">
+    <div class="hidden lg:block p-5 overflow-y-auto whitespace-nowrap scroll-hidden bg-gray-300 text-center">
         <ul class="inline-flex items-center list-none">
+            <li>
+                <a href="#"
+                    class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">Home</a>
+            </li>
             <li>
                 <a href="#"
                     class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">Pricing</a>

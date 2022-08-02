@@ -2,8 +2,8 @@
 
 
 @section('content')
-<div class="lg:flex">
-    <div class="container max-w-4xl px-10 py-10 mx-auto rounded-2xl shadow-lg">
+<div class="container lg:flex lg:mx-20">
+    <div class="max-w-4xl my-10 px-10 py-10 rounded-2xl shadow-2xl">
         <h1 class="capitalize text-4xl font-bold text-green-700">
             Nos creasse pendere crescit angelos etc
         </h1>
