@@ -1,7 +1,7 @@
-<div class="lg:block lg:w-1/3  mx-auto p-5 bg-white rounded-2xl shadow-2xl my-12 rounded-t-2xl">
+<div class="lg:block lg:w-1/4  mx-auto p-5 bg-white ">
     <div class="flex items-center justify-between">
         <div class="w-2/3">
-            <h2 class="section-heading">
+            <h2 class="section-heading text-1xl font-bold">
                 Questions and Answer
             </h2>
         </div>

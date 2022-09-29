@@ -3,8 +3,8 @@
 
 @section('content')
 
-<div class="container lg:flex lg:mx-20">
-    <div class="max-w-4xl my-10 px-10 py-10 rounded-2xl shadow-2xl">
+<div class="container lg:flex lg:mx-20 my-10 px-10 py-10 rounded-2xl shadow-2xl">
+    <div class="lg:w-3/4">
         <h1 class="capitalize text-4xl font-bold text-green-700">
            {{ $post->post_title }}
         </h1>
