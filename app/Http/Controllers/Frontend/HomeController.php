@@ -9,10 +9,15 @@ class HomeController extends Controller
 {
     public function home()
     {
-
-        $theme_path_home = 'themes.' . config('app.THEME_NAME') . '.content.home';
+        $posts = Post::with('user')
+        ->where('status','publish')
+        ->select('id','user_id','post_title','slug','post_description','updated_at')
+        ->limit(config('value.Home_Page_Post_Count'))
+        ->get();
+        $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.home';
         
-        Post::paginatio
-        dd("pass");
+        return view($theme_path_home,[
+            'posts' => $posts
+        ]);
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Backend\Cache\CacheClearController;
+use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
-use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
-use App\Http\Controllers\TestController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +21,24 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('themes.default.content.home');
-});
-Route::get('/post', function () {
-    return view('themes.default.content.post');
-});
+// Route::get('/', function () {
+//     return view('themes.default.content.home');
+// });
+// Route::get('/post', function () {
+//     return view('themes.default.content.post');
+// });
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
 Route::get('/test', TestController::class);
+
+
+
+Route::get('/',[HomeController::class,'home'])->name('home.index');
+
+Route::get(config('value.POST_SLUG') .'/{slug}',[PostController::class,'show'])->name('post.show');
 
 /***************
  * CACHE CLEAR *

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             MenuItemSeeder::class,
         ]);
         User::factory()
-            ->count(500000)
+            ->count(config('value.USER_COUNT'))
             ->create();
     }
 }
