@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="container lg:flex lg:mx-20 my-10 px-10 py-10 rounded-2xl shadow-2xl">
+<div class="container mx-auto lg:flex lg:mx-20 my-10 px-10 py-10 rounded-2xl shadow-2xl">
     <div class="lg:w-3/4">
         <h1 class="capitalize text-4xl font-bold text-green-700">
            {{ $post->post_title }}
@@ -16,8 +16,8 @@
 
 @foreach ($post->postContent as $postContent)
     <div class="mt-10 font-serif text-2xl text-gray-800 ">      
-        <h3 class="text-green-500 underline mt-3 mb-3 decoration-wavy font-bold">Answer: {{ $loop->iteration }}</h3>
-      {!!  $postContent->description !!}  
+        <h3 class="text-green-500 underline mt-3 mb-3 decoration-wavy font-bold ">Answer: {{ $loop->iteration }}</h3>
+        {!!  $postContent->description !!}  
     </div>
 @endforeach
 

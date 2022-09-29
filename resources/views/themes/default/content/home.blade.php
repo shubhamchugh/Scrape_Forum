@@ -21,6 +21,9 @@
             </div>
         </div>
         @endforeach
+        <div class="pt-5">
+            {{ $posts->links() }}
+        </div>
     </div>
     @include('themes.default.panels.sidebar')
 </div>
