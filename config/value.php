@@ -6,5 +6,6 @@ return [
     'THEME_NAME' => env('THEME_NAME','default'),
     'Home_Page_Post_Count' => env('Home_Page_Post_Count',10),
     'POST_SLUG' => env('POST_SLUG'),
-    'USER_COUNT' => env('USER_COUNT',50000)
+    'USER_COUNT' => env('USER_COUNT',50000),
+    'RELATED_POSTS_COUNT' => env('RELATED_POSTS_COUNT',10)
 ];

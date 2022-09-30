@@ -41,7 +41,10 @@ class RouteServiceProvider extends ServiceProvider
 
          //post route bind with slug
          Route::bind('slug', function ($slug) {
-            return Post::with('PostContent')->where('slug', $slug)->first();
+            return Post::with([
+                'PostContent',
+                'tags'
+            ])->where('slug', $slug)->first();
          });
     }
 

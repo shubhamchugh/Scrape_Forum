@@ -51,6 +51,6 @@ class StackToNovaController extends Controller
         foreach ($api_data['tags'] as $api_data_tags) {
             $api_data_tags_array[] = $api_data_tags['name'];
         }
-        $post->attachTags($api_data_tags_array, 'post');
+        $post->attachTags($api_data_tags_array, 'QA');
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('post_type', 50)->default('post');
+            $table->string('post_type', 50)->default('QA');
             $table->bigInteger('user_id')->unsigned();
             $table->string('post_title');
             $table->string('slug', 191)->unique();

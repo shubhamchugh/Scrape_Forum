@@ -18,11 +18,13 @@
         </div>
         <nav :class="{'flex': open, 'hidden': !open}"
             class="flex-col items-center flex-grow hidden pb-4 border-green-700 md:pb-0 md:flex md:justify-end md:flex-row lg:border-l-2 lg:pl-2">
+            
+            @foreach ($menus as $menus_item)
             <a class="font-bold px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
-                href="#">About</a>
-            <a class="font-bold px-4 py-2 mt-2 text-sm text-gray-900 md:mt-0 hover:text-green-700 focus:outline-none focus:shadow-outline"
-                href="#">Contact</a>
-            <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+            target={{ $menus_item['target'] }} href="{{ $menus_item['value'] }}">{{
+                $menus_item['name'] }}</a>
+                @endforeach
+                <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
                 <form action="" method="post" id="revue-form" name="revue-form" target="_blank"
                     class="p-1 transition duration-500 ease-in-out transform border2 bg-gray-50 rounded-xl sm:max-w-lg sm:flex">
                     <div class="flex-1 min-w-0 revue-form-group">
@@ -41,16 +43,18 @@
     </div>
 </div>
 <div>
+    @if (!empty($tags))
     <div class="hidden lg:block p-5 overflow-y-auto whitespace-nowrap scroll-hidden bg-gray-300 text-center">
         <ul class="inline-flex items-center list-none">
+            @foreach ($tags['name'] as $tag_name)
             <li>
-                <a href="#"
-                    class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">Home</a>
+                <a href="{{ $tags['slug'][$loop->index] }}"
+                    class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">#{{ $tag_name }}</a>
             </li>
-            <li>
-                <a href="#"
-                    class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">Pricing</a>
-            </li>
+            @endforeach
+           
         </ul>
     </div>
+    @endif
+   
 </div>
