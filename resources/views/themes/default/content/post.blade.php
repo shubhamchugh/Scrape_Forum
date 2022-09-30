@@ -13,18 +13,18 @@
             <div class=" text-left text-gray-400">Published {{ $post->created_at->diffForHumans() }} ~ </div>
             <div class=" text-left text-gray-400">Updated {{ $post->updated_at->diffForHumans() }}</div>
         </div>
+        @foreach ($post->tags as $tags)
+            {{ $tags->name }}
+        @endforeach
 
-@foreach ($post->postContent as $postContent)
-    <div class="mt-10 font-serif text-2xl text-gray-800 ">      
-        <h3 class="text-green-500 underline mt-3 mb-3 decoration-wavy font-bold ">Answer: {{ $loop->iteration }}</h3>
-        {!!  $postContent->description !!}  
-    </div>
-@endforeach
+    @foreach ($post->postContent as $postContent)
+        <div class="mt-10 font-serif text-2xl text-gray-800 ">      
+            <h3 class="text-green-500 underline mt-3 mb-3 decoration-wavy font-bold ">Answer: {{ $loop->iteration }}</h3>
+            {!!  $postContent->description !!}  
+        </div>
+    @endforeach
 
 </div>
-
- 
-  
     @include('themes.default.panels.sidebar')
 </div>
 

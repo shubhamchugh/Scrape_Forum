@@ -16,7 +16,12 @@ class HomeController extends Controller
         ->limit(config('value.Home_Page_Post_Count'))
         ->simplePaginate($this->limit);
 
+        if ($posts->isEmpty()) {
+            return "Please Scrape Some Post";
+        }
+
         $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.home';
+      
         foreach ($posts as $post) {
             foreach ($post->tags as $tag) {
                 $tags['name'][] =  $tag->name;  
@@ -24,8 +29,7 @@ class HomeController extends Controller
                 $tag_type = $tag->type; 
             }
         }        
-            
-
+        
          $related_posts  = Post::withAnyTags($tags['name'], $tag_type)
          ->select('slug','post_title')
          ->where('status','publish')
@@ -34,7 +38,7 @@ class HomeController extends Controller
 
         return view($theme_path_home,[
             'posts' => $posts,
-            'tags' => $tags,
+            'related_tags' => $tags,
             'related_posts' => $related_posts,
         ]);
     }

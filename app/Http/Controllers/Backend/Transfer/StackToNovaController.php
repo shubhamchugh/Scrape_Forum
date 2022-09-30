@@ -18,6 +18,7 @@ class StackToNovaController extends Controller
         if (! $source) {
             return 'No Record Found in database to get from old Platform';
         }
+
         $source->update([
             'is_scraped' => 'transferred',
         ]);
@@ -30,11 +31,15 @@ class StackToNovaController extends Controller
         if (! $api_data) {
             return "Api Don't have proper data please check";
         }
-
+        
+        
+        $post_description = (!empty(reset($api_data['content'])['content_dec'])) ? substr(strip_tags(reset($api_data['content'])['content_dec']),0,125) : NUll;
+        
         // dd($api_data);
         $post = Post::create([
             'post_title' => $api_data['post_title'],
             'slug' => $api_data['slug'],
+            'post_description' => $post_description,
             'source_value' => $api_data['source_value'],
             'post_ref' => config('value.POST_REF'),
             'user_id' => User::inRandomOrder()->first()->id,

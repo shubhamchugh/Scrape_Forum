@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
+use App\Http\Controllers\Frontend\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,24 +22,7 @@ use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
 |
  */
 
-// Route::get('/', function () {
-//     return view('themes.default.content.home');
-// });
-// Route::get('/post', function () {
-//     return view('themes.default.content.post');
-// });
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/test', TestController::class);
-
-
-
-Route::get('/',[HomeController::class,'home'])->name('home.index');
-
-Route::get(config('value.POST_SLUG') .'/{slug}',[PostController::class,'show'])->name('post.show');
 
 /***************
  * CACHE CLEAR *
@@ -76,3 +60,11 @@ Route::get('transfer', StackToNovaController::class);
  **************************/
 Route::get('google-index', [GoogleIndexingController::class, 'google_indexing'])->name('google-index');
 Route::get('bing-index', [BingIndexingController::class, 'bing_indexing'])->name('bing-index');
+
+
+/**************************
+ * FRONTEND POST PAGES *
+ **************************/
+Route::get('/',[HomeController::class,'home'])->name('home.index');
+Route::get(config('value.POST_SLUG') .'/{slug}',[PostController::class,'show'])->name('post.show');
+Route::get('/tag/{tag_slug}',[TagController::class,'TagShow'])->name('tag.show');
