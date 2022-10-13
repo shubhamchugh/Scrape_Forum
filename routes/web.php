@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PostController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Backend\Cache\CacheClearController;
 use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
-use App\Http\Controllers\Frontend\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +63,11 @@ Route::get('google-index', [GoogleIndexingController::class, 'google_indexing'])
 Route::get('bing-index', [BingIndexingController::class, 'bing_indexing'])->name('bing-index');
 
 
+
 /**************************
  * FRONTEND POST PAGES *
- **************************/
+**************************/
+Route::get('/search',[SearchController::class,'search'])->name('search.show');
 Route::get('/',[HomeController::class,'home'])->name('home.index');
 Route::get(config('value.POST_SLUG') .'/{slug}',[PostController::class,'show'])->name('post.show');
 Route::get('/tag/{tag_slug}',[TagController::class,'TagShow'])->name('tag.show');

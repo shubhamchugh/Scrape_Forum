@@ -4,7 +4,8 @@
         <div class="flex flex-row items-center justify-between lg:justify-start">
             <a href="{{ route('home.index') }}"
                 class="text-2xl font-bold tracking-tighter text-green-700 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
-                wickedblocks </a>
+                {{ config('app.name') }} </a>
+
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
                     <path x-show="!open" fill-rule="evenodd"
@@ -25,16 +26,25 @@
                 $menus_item['name'] }}</a>
                 @endforeach
                 <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
-                <form action="" method="post" id="revue-form" name="revue-form" target="_blank"
+                <form action="{{ route('search.show') }}" 
                     class="p-1 transition duration-500 ease-in-out transform border2 bg-gray-50 rounded-xl sm:max-w-lg sm:flex">
                     <div class="flex-1 min-w-0 revue-form-group">
-                        <label for="member_email" class="sr-only">Search Your Query</label>
-                        <input id="cta-email" type="email"
+                        <label class="sr-only">Search Your Query</label>
+                          <?php if (isset($_GET['q'])) { ?>
+                        <input id="txtGoogleSearch" name="q"  type="text"
                             class="block w-full px-5 py-3 bg-gray-200 text-base text-neutral-600 placeholder-gray-600 transition duration-500 ease-in-out transform bg-transparent border border-transparent rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-600"
                             placeholder="Search Your Query">
+
+                              <?php } else {?>
+    <input id="txtGoogleSearch" name="q"  type="text"
+                            class="block w-full px-5 py-3 bg-gray-200 text-base text-neutral-600 placeholder-gray-600 transition duration-500 ease-in-out transform bg-transparent border border-transparent rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-600"
+                            placeholder="Search Your Query">
+
+
+  <?php } ?>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-3 revue-form-actions">
-                        <button type="submit" value="Subscribe" name="member[subscribe]" id="member_submit"
+                        <button type="submit" 
                             class="block w-full px-5 py-3 text-base font-medium text-white bg-green-700 border border-transparent rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300 sm:px-10">Search</button>
                     </div>
                 </form>

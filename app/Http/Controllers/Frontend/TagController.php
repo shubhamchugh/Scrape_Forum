@@ -11,13 +11,15 @@ class TagController extends Controller
 {
     public function TagShow($tag)
     {
-        $tagName = Tag::where('')
+            
+        $tagName = Tag::whereJsonContains('slug->en', 'typescript')->first();
+        
       
         $related_posts = NUll;
         $tags = Null;
         $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.home';
 
-        $posts = Post::withAnyTags([$tagName], 'QA')
+        $posts = Post::withAnyTags([$tagName->name], 'QA')
             ->with(['user','tags',])
             ->where('status','publish')
             ->select('id','user_id','slug','post_title','post_description','updated_at')
@@ -47,7 +49,7 @@ class TagController extends Controller
 
             return view($theme_path_home,[
                 'posts' => $posts,
-                'tags' => $tags,
+                'related_tags' => $tags,
                 'related_posts' => $related_posts,]);
     }
 }
