@@ -55,12 +55,12 @@
 <div>
     
     @if (!empty($related_tags))
-    <div class="lg:block p-5 overflow-y-auto whitespace-nowrap scroll-hidden bg-gray-300 text-center">
+    <div class="lg:block p-5 overflow-y-auto whitespace-nowrap scroll-hidden bg-green-700 text-center ">
         <ul class="inline-flex items-center list-none">
             @foreach ($related_tags['name'] as $tag_name)
             <li>
                 <a href="{{ route('tag.show',$related_tags['slug'][$loop->index]) }}"
-                    class="px-4 py-1 mr-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-green-700">#{{ $tag_name }}</a>
+                    class="px-4 py-1 mr-1 text-base text-white transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-gray-700 ">#{{ $tag_name }}</a>
             </li>
             @endforeach
         </ul>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 class TagController extends Controller
 {
@@ -19,7 +20,7 @@ class TagController extends Controller
       
         $related_posts = NUll;
         $tags = Null;
-        $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.home';
+        $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.tags';
 
         $posts = Post::withAnyTags([$tagName->name], 'QA')
             ->with(['user','tags',])

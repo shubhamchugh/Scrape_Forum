@@ -1,6 +1,12 @@
 <!-- This example requires Tailwind CSS v2.0+
     -->
 <footer class="bg-slate-100 mt-10" aria-labelledby="footer-heading">
+    <div class="px-5 py-12 mx-auto max-w-7xl lg:py-16 md:px-12 lg:px-20">
+       @foreach (array_merge(range('A', 'Z'),range(1,9)) as $char)
+            <a href='{{ route("sitemap.show", ["sitemap" => $char]) }}'
+                class="p-2  text-white no-underline bg-green-600 rounded hover:bg-green-700 "><strong>{{ $char }}</strong></a>
+            @endforeach
+    </div>
     <!-- <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="px-5 py-12 mx-auto max-w-7xl lg:py-16 md:px-12 lg:px-20">
         <div class="md:grid md:grid-cols-5 md:gap-8">

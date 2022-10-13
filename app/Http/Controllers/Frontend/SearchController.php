@@ -10,7 +10,7 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        SEOMeta::setRobots('noindex, nofollow');
+        SEOMeta::setRobots('noindex');
         SEOMeta::getRobots();
         
         $theme_path_search = 'themes.' . config('value.THEME_NAME') . '.content.search';

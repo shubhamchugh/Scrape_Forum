@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
+use App\Http\Controllers\Frontend\HtmlSitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::get('upgrade', UpgradeSoftwareController::class)->name('upgrade');
 
 Route::get('transfer', StackToNovaController::class);
 
+
+
 /***************************
  * TRANSFER DATA TO FLARUM *
  ***************************/
@@ -64,6 +67,14 @@ Route::get('google-index', [GoogleIndexingController::class, 'google_indexing'])
 Route::get('bing-index', [BingIndexingController::class, 'bing_indexing'])->name('bing-index');
 
 
+
+
+
+
+/**************************
+ * FRONTEND SITEMAP PAGES *
+**************************/
+Route::get('/sitemap/{sitemap}',[HtmlSitemapController::class,'sitemap'])->name('sitemap.show');
 
 /**************************
  * FRONTEND POST PAGES *

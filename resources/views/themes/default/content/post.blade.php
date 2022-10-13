@@ -19,7 +19,7 @@
         </div>
 
     @foreach ($post->postContent as $postContent)
-        <div class="mt-10 font-serif text-2xl text-gray-800 ">      
+        <div class="mt-10 font-serif text-2xl text-gray-800 overflow-auto	">      
             <h3 class="text-green-500 underline mt-3 mb-3 decoration-wavy font-bold ">Answer: {{ $loop->iteration }}</h3>
             {!!  $postContent->description !!}  
         </div>
