@@ -13,9 +13,10 @@
             <div class=" text-left text-gray-400">Published {{ $post->created_at->diffForHumans() }} ~ </div>
             <div class=" text-left text-gray-400">Updated {{ $post->updated_at->diffForHumans() }}</div>
         </div>
-        @foreach ($post->tags as $tags)
-            {{ $tags->name }}
-        @endforeach
+        
+       <div class="text-center justify-center items-center">
+        {!! nova_get_setting('bellow_title_ads') !!}
+        </div>
 
     @foreach ($post->postContent as $postContent)
         <div class="mt-10 font-serif text-2xl text-gray-800 ">      

@@ -96,7 +96,7 @@
             <span class="mt-2 text-sm font-light text-gray-500">
                 Copyright ©
                 <a href="{{ route('home.index') }}" class="mx-2 text-wickedgreen hover:text-gray-500"
-                    rel="noopener noreferrer">{{ config('app.name') }}</a> Since 2020
+                    rel="noopener noreferrer">{{ nova_get_setting('site_name') }}</a> Since 2020
             </span>
         </div>
     </div>

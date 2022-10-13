@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center justify-between lg:justify-start">
             <a href="{{ route('home.index') }}"
                 class="text-2xl font-bold tracking-tighter text-green-700 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
-                {{ config('app.name') }} </a>
+                {{ nova_get_setting('site_name') }} </a>
 
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">

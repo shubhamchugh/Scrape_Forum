@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -67,7 +68,11 @@ Route::get('bing-index', [BingIndexingController::class, 'bing_indexing'])->name
 /**************************
  * FRONTEND POST PAGES *
 **************************/
+
 Route::get('/search',[SearchController::class,'search'])->name('search.show');
 Route::get('/',[HomeController::class,'home'])->name('home.index');
-Route::get(config('value.POST_SLUG') .'/{slug}',[PostController::class,'show'])->name('post.show');
 Route::get('/tag/{tag_slug}',[TagController::class,'TagShow'])->name('tag.show');
+
+if (Schema::hasTable('nova_settings')) {
+    Route::get((!empty(nova_get_setting('permalink_prefix')) ? nova_get_setting('permalink_prefix') : "") . '/{post:slug}', [PostController::class,'show'])->name('post.show');
+}

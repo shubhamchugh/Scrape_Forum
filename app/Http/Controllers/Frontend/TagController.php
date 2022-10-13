@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Spatie\Tags\Tag;
+use Illuminate\Http\Request;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -46,6 +48,9 @@ class TagController extends Controller
                     ->get();
             }
         }
+             SEOTools::setTitle($tagName->name . ' Related Question Answers');
+             SEOTools::opengraph()->setUrl(URL::current());
+             SEOTools::setCanonical(URL::current());
 
             return view($theme_path_home,[
                 'posts' => $posts,

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
+use App\Helpers\Settings\GeneralSettings;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -16,6 +17,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        GeneralSettings::settings();
     }
 
     /**
@@ -68,6 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             \Outl1ne\MenuBuilder\MenuBuilder::make(),
+            new \Outl1ne\NovaSettings\NovaSettings
         ];
     }
 

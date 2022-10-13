@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class HomeController extends Controller
 {
@@ -35,6 +39,13 @@ class HomeController extends Controller
          ->where('status','publish')
          ->limit(config('value.RELATED_POSTS_COUNT'))
          ->get();
+
+         $settings    = nova_get_settings();
+
+         SEOTools::setTitle($settings['home_title']);
+         SEOTools::setDescription(Str::words($settings['home_page_description']));
+         SEOTools::opengraph()->setUrl(URL::current());
+         SEOTools::setCanonical(URL::current());
 
         return view($theme_path_home,[
             'posts' => $posts,
