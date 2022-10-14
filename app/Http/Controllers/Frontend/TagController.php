@@ -15,9 +15,8 @@ class TagController extends Controller
     public function TagShow($tag)
     {
             
-        $tagName = Tag::whereJsonContains('slug->en', 'typescript')->first();
-        
-      
+        $tagName = Tag::whereJsonContains('slug->en', $tag)->first();
+
         $related_posts = NUll;
         $tags = Null;
         $theme_path_home = 'themes.' . config('value.THEME_NAME') . '.content.tags';
