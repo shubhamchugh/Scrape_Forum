@@ -15,7 +15,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('cache:truncate')
+            ->daily()
+            ->appendOutputTo(storage_path('logs/cache-truncate.log'))
+            ->runInBackground();
+
+        $schedule->command('search:index')
+            ->hourly()
+            ->appendOutputTo(storage_path('logs/search-index.log'))
+            ->runInBackground();
     }
 
     /**

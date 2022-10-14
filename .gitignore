@@ -14,3 +14,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/storage/Google_account_file.json
+/public/sitemap.xml
+/public/sitemap-*.xml
+/public/ads.txt

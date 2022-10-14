@@ -17,7 +17,8 @@
         "outl1ne/nova-menu-builder": "^7.0",
         "outl1ne/nova-settings": "^5.0",
         "spatie/laravel-tags": "^4.3",
-        "spatie/nova-tags-field": "^4.0"
+        "spatie/nova-tags-field": "^4.0",
+        "google/apiclient": "^2.12.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
@@ -42,6 +43,7 @@
         }
     },
     "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -59,7 +61,10 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "google/apiclient-services": [
+            "Indexing"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
