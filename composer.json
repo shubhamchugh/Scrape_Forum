@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "artesaos/seotools": "^1.0",
         "cviebrock/eloquent-sluggable": "^9.0",
+        "google/apiclient": "^2.12.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/nova": "~4.0",
@@ -17,8 +18,7 @@
         "outl1ne/nova-menu-builder": "^7.0",
         "outl1ne/nova-settings": "^5.0",
         "spatie/laravel-tags": "^4.3",
-        "spatie/nova-tags-field": "^4.0",
-        "google/apiclient": "^2.12.1"
+        "spatie/nova-tags-field": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

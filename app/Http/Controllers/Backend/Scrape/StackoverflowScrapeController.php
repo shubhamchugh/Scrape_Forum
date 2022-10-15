@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend\scrape;
 
 use App\Http\Controllers\Controller;
-use App\Models\FakeUser;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\PostContent;
 use App\Models\SourceUrl;
 use Carbon\Carbon;
@@ -20,10 +20,8 @@ class StackoverflowScrapeController extends Controller
         $end = (! empty($request->end)) ? $request->end : 999999999999999999;
         $domain = (! empty($request->domain)) ? $request->domain : 'https://stackoverflow.com';
         $scrapingStatus = (! empty($request->ScrapingStatus)) ? $request->ScrapingStatus : false;
+        $is_scraped = (!empty($request->where)) ? $request->where : 'pending';
 
-        if (empty($request->where)) {
-            dd('Please Add &where=value');
-        }
 
         if (! empty($scrapingStatus)) {
             $unique = SourceUrl::select('is_scraped')->distinct()->get();
@@ -34,13 +32,10 @@ class StackoverflowScrapeController extends Controller
             dd();
         }
 
-        $totalFakeUser = FakeUser::count();
+        $totalUser = User::count();
 
-        if (empty($totalFakeUser)) {
-            dd("Please Get Some Fake Users before Scrape Post Please  Help: 'example.com/insert?userCount=Value'");
-        }
-
-        $slug = SourceUrl::where('is_scraped', $request->where)->whereBetween('id', [$start, $end])->orderBy('id', 'ASC')->first();
+        $slug = SourceUrl::where('is_scraped', $is_scraped)->whereBetween('id', [$start, $end])->orderBy('id', 'ASC')->first();
+       
         if (! empty($slug)) {
             $slug->update([
                 'is_scraped' => 'scraping_start',
@@ -110,14 +105,13 @@ class StackoverflowScrapeController extends Controller
                 $randomDate = date('Y-m-d H:i:s', mt_rand($startdate, strtotime(Carbon::now())));
 
                 $postStore = Post::create([
-                    'is_content' => '1',
                     'post_title' => $stack_q,
                     'source_value' => $url_to_scrape,
-                    'fake_user_id' => mt_rand(1, $totalFakeUser),
+                    'user_id' => mt_rand(1, $totalUser),
                     'published_at' => $randomDate,
                 ]);
 
-                $postStore->tag($tag_list);
+                $postStore->attachTags($tag_list,'QA');
 
                 $slug->update([
                     'is_scraped' => 'title_scraped',
@@ -128,7 +122,7 @@ class StackoverflowScrapeController extends Controller
                     for ($i = 0; $i < count($stack_a); $i++) {
                         PostContent::create([
                             'post_id' => $postStore->id,
-                            'fake_user_id' => mt_rand(1, $totalFakeUser),
+                            'user_id' => mt_rand(1, $totalUser),
                             'content_dec' => $stack_a[$i],
                         ]);
                     }

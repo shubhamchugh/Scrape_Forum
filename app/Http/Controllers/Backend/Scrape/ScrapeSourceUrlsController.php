@@ -24,7 +24,7 @@ class ScrapeSourceUrlsController extends Controller
 
             $url = $domain.'/questions?tab=newest&page='.$count->id;
             echo "$url<br>";
-            $response = Http::get($url)->connectTimeout(30)->timeout(30);
+            $response = Http::get($url);
             $html = $response->body();
             
             $dom_document = new \DOMDocument();
@@ -52,6 +52,7 @@ class ScrapeSourceUrlsController extends Controller
             $count->update([
                 'is_scrape' => 'done',
             ]);
+            echo "Url Scraped";
         } else {
             echo 'No record found';
         }
