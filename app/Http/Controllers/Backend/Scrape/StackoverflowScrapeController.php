@@ -103,12 +103,15 @@ class StackoverflowScrapeController extends Controller
                 $startdate = strtotime('2021-3-01 00:00:00');
 
                 $randomDate = date('Y-m-d H:i:s', mt_rand($startdate, strtotime(Carbon::now())));
-
+                    
+                $post_description = (!empty($stack_a[0])) ? substr(strip_tags($stack_a[0]),0,125) : NUll;
+                
                 $postStore = Post::create([
                     'post_title' => $stack_q,
                     'source_value' => $url_to_scrape,
                     'user_id' => mt_rand(1, $totalUser),
                     'published_at' => $randomDate,
+                    'post_description' => $post_description,
                 ]);
 
                 $postStore->attachTags($tag_list,'QA');
