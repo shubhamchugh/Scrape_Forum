@@ -123,7 +123,7 @@ class StackoverflowScrapeController extends Controller
                         PostContent::create([
                             'post_id' => $postStore->id,
                             'user_id' => mt_rand(1, $totalUser),
-                            'content_dec' => $stack_a[$i],
+                            'description' => $stack_a[$i],
                         ]);
                     }
                     $slug->update([
