@@ -15,17 +15,18 @@ class ScrapeSourceUrlsController extends Controller
         $start = (! empty($request->start)) ? $request->start : 0;
         $end = (! empty($request->end)) ? $request->end : 999999999999999999;
         $domain = (! empty($request->domain)) ? $request->domain : 'https://stackoverflow.com';
-        $count = Count::where('is_scrape', 0)->whereBetween('id', [$start, $end])->first();
+        $count = Count::where('is_scrape', 'pending')->whereBetween('id', [$start, $end])->first();
 
         if (! empty($count)) {
             $count->update([
-                'is_scrape' => 1,
+                'is_scrape' => 'scraping',
             ]);
 
-            $url = $domain.'/questions?tab=newest&page='.$count->count;
-            $response = Http::get($url);
+            $url = $domain.'/questions?tab=newest&page='.$count->id;
+            echo "$url<br>";
+            $response = Http::get($url)->connectTimeout(30)->timeout(30);
             $html = $response->body();
-
+            
             $dom_document = new \DOMDocument();
             libxml_use_internal_errors(true); //disable libxml errors
 
@@ -48,6 +49,9 @@ class ScrapeSourceUrlsController extends Controller
                 ]);
                 $i++;
             }
+            $count->update([
+                'is_scrape' => 'done',
+            ]);
         } else {
             echo 'No record found';
         }

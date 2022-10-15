@@ -7,12 +7,14 @@ use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\HtmlSitemapController;
 use App\Http\Controllers\Backend\Cache\CacheClearController;
 use App\Http\Controllers\Backend\Transfer\StackToNovaController;
 use App\Http\Controllers\Backend\Indexing\BingIndexingController;
 use App\Http\Controllers\Backend\Indexing\GoogleIndexingController;
+use App\Http\Controllers\Backend\Scrape\ScrapeSourceUrlsController;
 use App\Http\Controllers\Backend\Upgrade\UpgradeSoftwareController;
-use App\Http\Controllers\Frontend\HtmlSitemapController;
+use App\Http\Controllers\Backend\Scrape\StackoverflowScrapeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +45,6 @@ Route::get('upgrade', UpgradeSoftwareController::class)->name('upgrade');
 
 Route::get('transfer', StackToNovaController::class);
 
-
-
 /***************************
  * TRANSFER DATA TO FLARUM *
  ***************************/
@@ -52,23 +52,21 @@ Route::get('transfer', StackToNovaController::class);
 /*************************************************
  * SCRAPE POST URL FROM STACKOVERFLOW PAGINATION *
  *************************************************/
+
+Route::get('scrape/source-urls',[ScrapeSourceUrlsController::class,'scrapeSourceUrl'])->name('scrape.stack_url');
+
 /**********************************
  * SCRAPE STACKOVERFLOW POST DATA *
  **********************************/
+Route::get('scrape/qa',[StackoverflowScrapeController::class,'stackScrape'])->name('scrape.stack_qa');
+
 
 /***********************************
  * GOOGLE & BING INDEXING REQUESTS *
  ***********************************/
 
-/**************************
- * SEARCH ENGINE INDEXING *
- **************************/
 Route::get('google-index', [GoogleIndexingController::class, 'google_indexing'])->name('google-index');
 Route::get('bing-index', [BingIndexingController::class, 'bing_indexing'])->name('bing-index');
-
-
-
-
 
 
 /**************************

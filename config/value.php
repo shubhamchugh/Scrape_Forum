@@ -10,5 +10,6 @@ return [
     'RELATED_POSTS_COUNT' => env('RELATED_POSTS_COUNT',10),
     'TAG_PAGE_COUNT' => env('TAG_PAGE_COUNT',10),
     'SITEMAP_PAGE_COUNT' => env('SITEMAP_PAGE_COUNT',10),
-    'Bing_API_Key' => env('Bing_API_Key')
+    'Bing_API_Key' => env('Bing_API_Key'),
+    'PAGINATION_COUNT' => env('PAGINATION_COUNT')
 ];
