@@ -23,6 +23,12 @@ class GeneralSettings
                 Text::make('Title prefix', 'title_prefix'),
                 Text::make('TItle Suffix', 'title_suffix'),
 
+
+                Text::make('Questions Xpath', 'question_xpath'),
+                Text::make('Answers Xpath', 'answers_xpath'),
+                Text::make('Tags Xpath', 'tags_xpath'),
+                Text::make('Paginate Url Xpath', 'paginate_url_xpath'),
+
                 Textarea::make('Head Code', 'head_code'),
                 Textarea::make('Bellow Title Ads', 'bellow_title_ads'),
 

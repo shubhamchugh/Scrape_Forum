@@ -39,7 +39,7 @@ class ScrapeSourceUrlsController extends Controller
             $document_xpath = new \DOMXPath($dom_document);
 
             //Get Url
-            $Urls = $document_xpath->query('//a[@class="s-link"]/@href');
+            $Urls = $document_xpath->query(nova_get_setting('paginate_url_xpath'));
             $i = 1;
             foreach ($Urls as $url) {
                 $url_to_save = $domain.$url->nodeValue;

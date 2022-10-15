@@ -66,9 +66,9 @@ class StackoverflowScrapeController extends Controller
                 $document_xpath = new \DOMXPath($dom_document);
 
                 //News Xpath to get Data
-                $questions = $document_xpath->query('//h1/a[@class="question-hyperlink"]');
-                $answers = $document_xpath->query('//div[@class="s-prose js-post-body"]');
-                $tags = $document_xpath->query('//a[@rel="tag"]');
+                $questions = $document_xpath->query(nova_get_setting('question_xpath'));
+                $answers = $document_xpath->query(nova_get_setting('answers_xpath'));
+                $tags = $document_xpath->query(nova_get_setting('tags_xpath'));
 
                 foreach ($questions as $question) {
                     $stack_q[] = $question->nodeValue;
